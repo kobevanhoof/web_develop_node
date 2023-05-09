@@ -1,0 +1,24 @@
+{
+  "name": "3_css_-html2",
+  "version": "1.0.0",
+  "description": "https://www.youtube.com/watch?v=VShtPwEkDD0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "Kobe Vanhoof",
+  "license": "ISC",
+  "dependencies": {
+    "csv": "^6.2.12",
+    "csv-parser": "^3.0.0",
+    "ejs": "^3.1.9",
+    "expresss": "^0.0.0",
+    "fs": "^0.0.1-security",
+    "json2csv": "^6.0.0-alpha.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "keywords": []
+}

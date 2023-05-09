@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/ceeses.css">
+    <link rel="stylesheet" href="css/ceeses2.css">
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>Number</th>
+        <th>Name</th>
+        <th>First Name</th>
+        <th>Image</th>
+        <th>Color</th>
+        <th>Random Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (let i = 0; i < data.length; i++) { %>
+        <tr>
+          <td><%= data[i].Number %></td>
+          <td><%= data[i].Name %></td>
+          <td><%= data[i].FName %></td>
+          <td><img src="img/<%= data[i].Image %>" alt="Image"></td>
+          <td><%= data[i].Color %></td>
+          <td><%= data[i].RandomN %></td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+  </body>
+</html>
