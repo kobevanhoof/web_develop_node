@@ -1,8 +1,60 @@
 html{
-    background-color: lightgreen;
-    color: rgb(89, 67, 10);
+    background-color: black;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+   
 }
-img{
-    height: 50px;
-    width: 50px;
+
+
+.product{
+    width: 300px;
+    height: 300px;
+    float: left;
+    margin: 1%;
+    border: 1px solid white;
+    border-radius: 10%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content: stretch;
+    overflow: auto;
+    flex-direction: column;
+}
+
+body{
+    width: auto;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+}
+
+.index{
+    border: 10px solid yellow;
+    text-shadow: 1px 1px red;
+    background-color: white;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.rand{
+    border: 10px solid green;
+    text-shadow: 1px 1px red;
+    background-color: white;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.name{
+    border: 10px solid orange;
+    text-shadow: 1px 1px red;
+    background-color: white;
+    width: 100%;
+    height: auto;
+    display: block;
+    font-weight: 900;
+
 }

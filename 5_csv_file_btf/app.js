@@ -7,7 +7,9 @@ const ejs = require('ejs');
 app.use(express.static('public'));
 // Specific folder example
  app.use('/css', express.static(__dirname + 'public/css'))
-// app.use('/js', express.static(__dirname + 'public/js'))
+ app.use('/ts', express.static(__dirname + '/public/ts'));
+ app.use('/js', express.static(__dirname + '/public/ts'));
+
  app.use('/img', express.static(__dirname + 'public/images'))
 
 
@@ -27,13 +29,12 @@ app.get('/', (req, res) => {
           res.status(500).send('Internal Server Error');
         } else {
 
+
           res.send(html);
         }
       });
     });
 });
-
-
 
 
 app.listen(3000, () => {

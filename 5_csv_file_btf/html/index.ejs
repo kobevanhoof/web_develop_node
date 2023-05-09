@@ -6,31 +6,26 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/ceeses.css">
     <link rel="stylesheet" href="css/ceeses2.css">
+    <script src="js/functions.js"></script>
 </head>
 <body>
-  <table>
-    <thead>
-      <tr>
-        <th>Number</th>
-        <th>Name</th>
-        <th>First Name</th>
-        <th>Image</th>
-        <th>Color</th>
-        <th>Random Number</th>
-      </tr>
-    </thead>
-    <tbody>
       <% for (let i = 0; i < data.length; i++) { %>
-        <tr>
-          <td><%= data[i].Number %></td>
-          <td><%= data[i].Name %></td>
-          <td><%= data[i].FName %></td>
-          <td><img src="img/<%= data[i].Image %>" alt="Image"></td>
-          <td><%= data[i].Color %></td>
-          <td><%= data[i].RandomN %></td>
-        </tr>
+        <div class="product" >
+          <img src="img/<%= data[i].Image %>" alt="Image">
+          
+          <div class="index"><%= data[i].Number %></div>
+          <div class="fcol"><%= data[i].Color %></div>
+          <div class="rand"><%= data[i].RandomN %></div>
+          <div  class="name">
+            <div class="fname"><%= data[i].FName %></div>
+            <div class="lname"><%= data[i].Name %></div>
+          </div>
+
+        </div>
       <% } %>
-    </tbody>
-  </table>
+      <script>
+    
+        convertcsvstyle();
+      </script>
   </body>
 </html>
