@@ -3,6 +3,21 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+const fs = require("fs");
+const { parse } = require("csv-parse");
+
+fs.createReadStream("../generate_csv/output.csv")
+  .pipe(parse({ delimiter: ",", from_line: 2 }))
+  .on("data", function (row) {
+    console.log(row);
+  })
+  .on("end", function () {
+    console.log("finished");
+  })
+  .on("error", function (error) {
+    console.log(error.message);
+  });
+
 // Static Files
 app.use(express.static('public'));
 // Specific folder example
