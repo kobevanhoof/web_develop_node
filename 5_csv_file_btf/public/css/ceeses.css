@@ -1,10 +1,15 @@
 html{
     background: rgb(0,0,0);
-    background: linear-gradient(135deg, rgba(0,0,0,1) 10%, rgba(101,15,31,1) 50%, rgba(31,31,31,1) 90%);
+    background: linear-gradient(30deg, rgb(0,200,200) 10%, rgb(0,0,50) 40%,rgb(0,0,50) 60%, rgb(0,200,200) 90%);
+    background-attachment: fixed;
     color: white;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
    
+}
+
+.product>img{
+    width: 50px;
 }
 
 
@@ -12,7 +17,8 @@ html{
     width: 300px;
     height: 300px;
     float: left;
-    margin: 1%;
+    margin-right: 1%;
+    margin-bottom: 1%;
     border: 1px solid white;
     border-radius: 10%;
     display: flex;
@@ -22,7 +28,8 @@ html{
     align-content: stretch;
     overflow: auto;
     flex-direction: column;
-    transition: transform 0.3s ease;
+    transition-timing-function: ease;
+
 }
 
 body{
@@ -33,16 +40,17 @@ body{
 }
 
 .index{
-    border: 2px solid black;
     border-radius: 50%;
     width: 25px;
     height: 25px;
     padding: 5px;
     margin: 10px;
-    background-color:rgb(255, 255, 255, 0.5) ;
+    background-color:rgb(255, 255, 255, 0.75) ;
     -webkit-text-stroke: 1px black; /* width and color */
     text-align: center;
+    font-size: 125%;
 }
+
 
 .rand{
 
@@ -57,9 +65,12 @@ body{
     display: block;
     font-weight: 900;
     text-align: left;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    -webkit-text-stroke: 1px black; /* width and color */
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    -webkit-text-stroke: 1px rgb(111, 111, 111); /* width and color */
+    background-color: rgba(255, 255, 255, 0.75);
+    
 }
 
 .fname{
@@ -73,7 +84,34 @@ body{
 }
 
 .product:hover{
-
     transform: scale(0.95);
-    border: 2px solid blue;
+    transition-duration: 0.3s;
+}
+.product:hover .name,.product:hover .index{
+    background-color: rgba(200, 255, 220, 0.75) ;
+  }
+  .product:active .name,.product:active .index{
+    background-color: rgba(200, 255, 255, 0.75) ;
+  }
+
+#header>img{
+    height: 200px;
+    width: 200px;
+    float: left;
+}
+
+#header{
+    position: relative;
+    margin-bottom: 20px;
+    height: auto;
+    width: 100%;
+}
+
+#header:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+#header>h1{
+    font-size: 300%;
 }

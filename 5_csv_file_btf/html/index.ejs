@@ -9,25 +9,30 @@
     <script src="js/functions.js"></script>
 </head>
 <body>
-      <% for (let i = 0; i < data.length; i++) { %>
-        <div class="product" >
-          <img src="img/<%= data[i].Image %>" alt="Image">
-          
-          <div class="index"><%= data[i].Number %></div>
-          <div class="fcol"><%= data[i].Color %></div>
-          <div class="rand"><%= data[i].RandomN %></div>
-          <div  class="name">
-            <div class="lname"><%= data[i].Name %></div>
-            <div class="fname"><%= data[i].FName %></div>
-          </div>
 
+  <div id="header">
+    <img src="img/qlite.jpeg" alt="Q-lite">
+<h1>website learn node</h1>
+<p>Kobe Vanhoof</p>
+  </div>
+  <div id="content">
+
+  </div>
+    <% for (let i = 0; i < data.length; i++) { %>
+      <div class="product" onmouseover="changeBackgroundImage(this)" onmouseout="restoreBackgroundImage(this)" >
+        <img src="img/<%= data[i].Image %>" alt="Image">
+        <div class="index"><%= data[i].Number %></div>
+        <div class="fcol"><%= data[i].Color %></div>
+        <div class="rand"><%= data[i].RandomN %></div>
+        <div  class="name">
+          <div class="lname"><%= data[i].Name %></div>
+          <div class="fname"><%= data[i].FName %></div>
         </div>
-      <% } %>
-      <script>
-        addHoverEffect();
-        convertcsvstyle();
-      </script>
-
-
+    </div>
+  <% } %>
+  <script>
+    addHoverEffect();
+    convertcsvstyle();
+  </script>
   </body>
 </html>
