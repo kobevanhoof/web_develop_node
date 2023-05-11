@@ -1,5 +1,6 @@
 html{
-    background-color: black;
+    background: rgb(0,0,0);
+    background: linear-gradient(135deg, rgba(0,0,0,1) 10%, rgba(101,15,31,1) 50%, rgba(31,31,31,1) 90%);
     color: white;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
@@ -21,6 +22,7 @@ html{
     align-content: stretch;
     overflow: auto;
     flex-direction: column;
+    transition: transform 0.3s ease;
 }
 
 body{
@@ -31,30 +33,47 @@ body{
 }
 
 .index{
-    border: 10px solid yellow;
-    text-shadow: 1px 1px red;
-    background-color: white;
-    width: 100%;
-    height: auto;
-    display: block;
+    border: 2px solid black;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+    margin: 10px;
+    background-color:rgb(255, 255, 255, 0.5) ;
+    -webkit-text-stroke: 1px black; /* width and color */
+    text-align: center;
 }
 
 .rand{
-    border: 10px solid green;
-    text-shadow: 1px 1px red;
-    background-color: white;
-    width: 100%;
-    height: auto;
-    display: block;
+
+    -webkit-text-stroke: 1px black; /* width and color */
+    margin-bottom: 25%;
+    font-size: 400%;
+   
 }
 
 .name{
-    border: 10px solid orange;
-    text-shadow: 1px 1px red;
-    background-color: white;
-    width: 100%;
     height: auto;
     display: block;
     font-weight: 900;
+    text-align: left;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    -webkit-text-stroke: 1px black; /* width and color */
+}
 
+.fname{
+    
+
+    font-size: 100%;
+}
+
+.lname{
+    font-size: 175%;
+}
+
+.product:hover{
+
+    transform: scale(0.95);
+    border: 2px solid blue;
 }

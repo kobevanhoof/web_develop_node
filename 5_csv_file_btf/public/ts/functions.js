@@ -31,3 +31,23 @@ function convertcsvstyle() {
     });
 }
 
+function addHoverEffect() {
+  // Get all elements with the class 'product'
+  const products = document.getElementsByClassName('product');
+
+  // Loop through each product element
+  for (let i = 0; i < products.length; i++) {
+    const product = products[i];
+
+    // Add event listeners for mouseenter and mouseleave events
+    product.addEventListener('mouseenter', function () {
+      // Set the background image opacity to 0.7 when hovering
+      product.style.opacity = 0.9;
+    });
+
+    product.addEventListener('mouseleave', function () {
+      // Reset the background image opacity when the mouse leaves
+      product.style.opacity = 1;
+    });
+  }
+}
