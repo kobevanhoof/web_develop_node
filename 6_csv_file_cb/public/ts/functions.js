@@ -80,3 +80,31 @@ function restoreBackgroundImage(div) {
   // Restore the original background image from the data attribute
   div.style.backgroundImage = div.dataset.originalBackground;
 }
+
+function main() {
+  addHoverEffect();
+  convertcsvstyle();
+  sendSelectedData();
+}
+
+function sendSelectedData() {
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  const selectedColors = Array.from(checkboxes)
+    .filter(checkbox => checkbox.checked)
+    .map(checkbox => checkbox.value);
+ 
+
+    
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', '/data?colors=' + encodeURIComponent(selectedColors.join(',')), true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      const productsContainer = document.getElementById('productsContainer');
+      productsContainer.innerHTML = ''; // Clear existing content
+      productsContainer.innerHTML = xhr.responseText; // Set new HTML response
+      addHoverEffect();
+      convertcsvstyle();
+    }
+  };
+  xhr.send();
+}

@@ -12,4 +12,6 @@ npm i -D typescript
 npm install --save-dev typescript@4
 npm install --save-dev tslint
 npm install -g typescript
-tsc --init
+tsc --init 
+npm install xmlhttprequest
+npm install jsdom

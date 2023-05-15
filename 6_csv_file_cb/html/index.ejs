@@ -4,35 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/ceeses_reset.css">
     <link rel="stylesheet" href="css/ceeses.css">
-    <link rel="stylesheet" href="css/ceeses2.css">
+    <link rel="stylesheet" href="css/checkbox.css">
     <script src="js/functions.js"></script>
+    <script src="https://kit.fontawesome.com/6eeaea1e59.js" crossorigin="anonymous"></script>    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Open+Sans&display=swap" rel="stylesheet"> 
 </head>
-<body>
+<body onload="main()">
 
   <div id="header">
     <img src="img/qlite.jpeg" alt="Q-lite">
-<h1>website learn node</h1>
-<p>Kobe Vanhoof</p>
+    <h1>website learn node</h1>
+    <p>Kobe Vanhoof</p>
   </div>
   <div id="content">
-
-  </div>
-    <% for (let i = 0; i < data.length; i++) { %>
-      <div class="product" onmouseover="changeBackgroundImage(this)" onmouseout="restoreBackgroundImage(this)" >
-        <img src="img/<%= data[i].Image %>" alt="Image">
-        <div class="index"><%= data[i].Number %></div>
-        <div class="fcol"><%= data[i].Color %></div>
-        <div class="rand"><%= data[i].RandomN %></div>
-        <div  class="name">
-          <div class="lname"><%= data[i].Name %></div>
-          <div class="fname"><%= data[i].FName %></div>
-        </div>
+    
+    <div class="selectdata">
+      <h1>choose color</h1>
+      <form id="colorForm" class="checkbox-wrapper-14">
+        <% const uniqueColors = Array.from(new Set(data.map(item => item.Color))); %>
+        <% for (let i = 0; i < uniqueColors.length; i++) { %>
+          <input type="checkbox" id="<%= uniqueColors[i] %>" name="<%= uniqueColors[i] %>" value="<%= uniqueColors[i] %>" onchange="sendSelectedData()">
+          <label for="<%= uniqueColors[i] %>"><%= uniqueColors[i] %></label><br>
+        <% } %>
+        </form> 
+           
     </div>
-  <% } %>
-  <script>
-    addHoverEffect();
-    convertcsvstyle();
-  </script>
+    <div class="products" id="productsContainer">
+      <% for (let i = 0; i < data.length; i++) { %>
+        <div class="product" onmouseover="changeBackgroundImage(this)" onmouseout="restoreBackgroundImage(this)" >
+          <img src="img/<%= data[i].Image %>" alt="Image">
+          <div class="index"><%= data[i].Number %></div>
+          <div class="fcol"><%= data[i].Color %></div>
+          <div class="rand"><%= data[i].RandomN %></div>
+          <div  class="name">
+            <div class="lname"><%= data[i].Name %></div>
+            <div class="fname"><%= data[i].FName %></div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
   </body>
 </html>
