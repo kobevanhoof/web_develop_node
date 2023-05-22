@@ -18,33 +18,48 @@
     <h1>website learn node</h1>
     <p>Kobe Vanhoof</p>
   </div>
+ 
   <div id="content">
-    
     <div class="selectdata">
-      <h1>choose color</h1>
-      <form id="colorForm" class="checkbox-wrapper-14">
-        <% const uniqueColors = Array.from(new Set(data.map(item => item.Color))); %>
-        <% for (let i = 0; i < uniqueColors.length; i++) { %>
-          <input type="checkbox" id="<%= uniqueColors[i] %>" name="<%= uniqueColors[i] %>" value="<%= uniqueColors[i] %>" onchange="sendSelectedData()">
-          <label for="<%= uniqueColors[i] %>"><%= uniqueColors[i] %></label><br>
+      
+      <form id="numberForm" class="checkbox-wrapper-14">
+        <h1>choose number</h1>
+        <% const uniquenumber = Array.from(new Set(data.map(item => item.RandomN))).sort((a, b) => a - b); %>
+        <% for (let i = 0; i < uniquenumber.length; i++) { %>
+          <input type="checkbox" id="<%= uniquenumber[i] %>" name="<%= uniquenumber[i] %>" value="<%= uniquenumber[i] %>" onchange="sendSelectedData()">
+          <label for="<%= uniquenumber[i] %>"><%= uniquenumber[i] %></label><br>
         <% } %>
-        </form> 
-           
-    </div>
-    <div class="products" id="productsContainer">
-      <% for (let i = 0; i < data.length; i++) { %>
-        <div class="product" onmouseover="changeBackgroundImage(this)" onmouseout="restoreBackgroundImage(this)" >
-          <img src="img/<%= data[i].Image %>" alt="Image">
-          <div class="index"><%= data[i].Number %></div>
-          <div class="fcol"><%= data[i].Color %></div>
-          <div class="rand"><%= data[i].RandomN %></div>
-          <div  class="name">
-            <div class="lname"><%= data[i].Name %></div>
-            <div class="fname"><%= data[i].FName %></div>
+        </form>
+        <form id="colorForm" class="checkbox-wrapper-14">
+          <h1>choose color</h1>
+          <% const uniqueColors = Array.from(new Set(data.map(item => item.Color))); %>
+          <% for (let i = 0; i < uniqueColors.length; i++) { %>
+            <input type="checkbox" id="<%= uniqueColors[i] %>" name="<%= uniqueColors[i] %>" value="<%= uniqueColors[i] %>" onchange="sendSelectedData()">
+            <label for="<%= uniqueColors[i] %>"><%= uniqueColors[i] %></label><br>
+          <% } %>
+        </form>
+        <button onclick="makeflat()" class="but1">make small</button>
+      </div>
+      <div class="products" id="productsContainer">
+        <% for (let i = 0; i < data.length; i++) { %>
+          <div class="productborder" onmouseover="startrota(40, this)" onmouseout="stoprota(this)">
+            <% if(hasData=='true') { %>
+              <div class="product" onmouseover="changeBackgroundImage(this)" onmouseout="restoreBackgroundImage(this)" >
+            <% } else { %>
+              <div class="productflat" onmouseover="changeBackgroundImage(this)" onmouseout="restoreBackgroundImage(this)" >
+            <% } %>
+              <img class="bgproduct" src="img/<%= data[i].Image %>" alt="Image">
+              <div class="index"><%= data[i].Number %></div>
+              <div class="fcol"><%= data[i].Color %></div>
+              <div class="rand"><%= data[i].RandomN %></div>
+              <div  class="name">
+                <div class="lname"><%= data[i].Name %></div>
+                <div class="fname"><%= data[i].FName %></div>
+              </div>
+            </div>
           </div>
-        </div>
-      <% } %>
+        <% } %>
+      </div>
     </div>
-  </div>
   </body>
 </html>

@@ -1,110 +1,137 @@
 function convertcsvstyle() {
-    // Get all the div elements with class "product"
-    var productDivs = document.querySelectorAll('div.product');
+    var productDivs = document.querySelectorAll('div.productborder');
 
-    // Loop through each div element
     productDivs.forEach(function (div) {
-        // Check if the div contains an image element
         var imageElement = div.querySelector('img');
-
         if (imageElement) {
-            // Get the image source
-            var imageUrl = imageElement.src;
-            // Remove the image element
-            imageElement.style.visibility = 'hidden';
-            imageElement.style.position = 'absolute';
-            // Set the background image and make it fit the div
-            div.style.backgroundImage = "url(" + imageUrl + ")";
-            div.style.backgroundSize = 'cover';
-            div.style.backgroundRepeat = 'no-repeat';
-            div.style.backgroundPosition = 'center';
+          if(flatoff()){
+            div.querySelector('div').style.backgroundImage = "url(" + imageElement.src + ")";
+          }
         }
-
-        // Check if the div has class "fcol"
-        var fcolElement = div.querySelector('.fcol');
-        if (fcolElement) {
-            // Get the font color input
-            var fontColor = fcolElement.innerText;
-            div.removeChild(fcolElement);
-            // Set the font color of the div
-            div.style.color = fontColor;
-        }
-    });
-}
-
-function addHoverEffect() {
-  // Get all elements with the class 'product'
-  const products = document.getElementsByClassName('product');
-
-
-  // Loop through each product element
-  for (let i = 0; i < products.length; i++) {
-    const product = products[i];
-
-    // Add event listeners for mouseenter and mouseleave events
-    product.addEventListener('mouseenter', function () {
-      // Set the background image opacity to 0.7 when hovering
-      product.style.opacity = 0.9;
+        var fcolElements = div.querySelector('.fcol');
+        var randElements = div.querySelector('.rand');
+        var fcolContent = fcolElements.innerHTML;
+        randElements.style.webkitTextStroke = "2px "+fcolContent;
     });
 
-    product.addEventListener('mouseleave', function () {
-      // Reset the background image opacity when the mouse leaves
-      product.style.opacity = 1;
-    });
-  }
 }
-
-// Attach event listeners to all image-div elements
-const divs = document.getElementsByClassName('.product');
-for (let i = 0; i < divs.length; i++) {
-  const div = divs[i];
-  div.addEventListener('mouseover', function() {
-    changeBackgroundImage(this);
-    chan
-  });
-  div.addEventListener('mouseout', function() {
-    restoreBackgroundImage(this);
-  });
-}
-
-// Function to change the background image of a div
 function changeBackgroundImage(div) {
-  // Store the original background image in a data attribute
-  div.dataset.originalBackground = div.style.backgroundImage;
-  // Change the background image to the desired image
-  div.style.backgroundImage = 'url(img/wavinghand.jpeg)';
+  if(flatoff()){
+    div.style.backgroundImage = 'url(img/wavinghand.jpeg)';
+  }
+  else{
+    div.style.backgroundImage = 'none'
+  }
+  div.querySelector('div').style.opacity = 0.9;
 }
-
-// Function to restore the original background image of a div
 function restoreBackgroundImage(div) {
-  // Restore the original background image from the data attribute
-  div.style.backgroundImage = div.dataset.originalBackground;
+  if(flatoff()){
+    div.style.backgroundImage = "url(" + div.querySelector('img').src + ")";
+  }
+  else{
+    div.style.backgroundImage = 'none'
+  }
+  div.querySelector('div').style.opacity = 1;
 }
-
 function main() {
-  addHoverEffect();
   convertcsvstyle();
   sendSelectedData();
 }
-
 function sendSelectedData() {
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-  const selectedColors = Array.from(checkboxes)
+  const colorch = document.querySelectorAll('#colorForm input[type="checkbox"]');
+  const selectedColors = Array.from(colorch)
     .filter(checkbox => checkbox.checked)
     .map(checkbox => checkbox.value);
- 
 
-    
+  const numberch = document.querySelectorAll('#numberForm input[type="checkbox"]');
+  const selectedNumbers = Array.from(numberch)
+    .filter(checkbox => checkbox.checked)
+    .map(checkbox => checkbox.value);
+
   const xhr = new XMLHttpRequest();
-  xhr.open('GET', '/data?colors=' + encodeURIComponent(selectedColors.join(',')), true);
+  xhr.open('GET', '/data?colors=' + encodeURIComponent(selectedColors.join(',')) + '&RandomN=' + encodeURIComponent(selectedNumbers.join(',')), true);
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
       const productsContainer = document.getElementById('productsContainer');
       productsContainer.innerHTML = ''; // Clear existing content
       productsContainer.innerHTML = xhr.responseText; // Set new HTML response
-      addHoverEffect();
       convertcsvstyle();
     }
   };
   xhr.send();
 }
+let deg = 210;
+let intervalId;
+
+function startrota(int, div) {
+  intervalId = setInterval(function() {
+    rota(div,true);
+  }, int);
+}
+
+function stoprota(div) {
+  clearInterval(intervalId);
+  rota(div,false);
+}
+
+function rota(div,set) {
+  if(set)
+  {
+    deg += 10;
+    if (deg >= 360) {
+      deg = 0;
+    }
+  }
+  else
+  {
+    deg = 210;
+  }
+  div.style.background = `linear-gradient(${deg}deg, rgb(200, 0, 0) 0%, rgba(25, 75, 100, 1) 25%, rgb(255, 255, 255) 100%)`;
+}
+
+function makeflat() {
+
+  if (flatoff()) 
+  {
+    var productElements = document.getElementsByClassName('product');
+    var productArray = Array.from(productElements);
+    productArray.forEach(function(element) {
+      element.classList.remove('product');
+      element.classList.add('productflat');
+      element.style.backgroundImage = 'none'
+    });
+    setCookie('hasData',false,1);
+  }
+  else
+  {
+    var productElements = document.getElementsByClassName('productflat');
+    var productArray = Array.from(productElements);
+    productArray.forEach(function(element) {
+      element.classList.remove('productflat');
+      element.classList.add('product');
+      restoreBackgroundImage(element);
+    });
+    setCookie('hasData',true,1);
+  }
+  
+}
+
+function flatoff(){
+  var productElements = document.getElementsByClassName('product');
+  if (productElements.length <1) 
+  {
+    return false;
+  }
+  else
+  {
+    return true;
+  }   
+} 
+
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+

@@ -15,3 +15,6 @@ npm install -g typescript
 tsc --init 
 npm install xmlhttprequest
 npm install jsdom
+npm install --save cookie-parser
+npm install express-session
+npm install csv ejs fs
